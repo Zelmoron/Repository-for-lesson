@@ -9,3 +9,14 @@ def read_root():
 @app.get("/items")
 def get_items():
     return {"items": ["item1", "item2", "item3"]} #Добавление вывода предметов
+
+
+@app.get("/items")
+def get_items():
+    return {
+        "items": [
+            {"id": 1, "name": "item1", "description": "A fancy item", "price": 10.99},
+            {"id": 2, "name": "item2", "description": "A useful item", "price": 5.49},
+            {"id": 3, "name": "item3", "description": "A rare item", "price": 99.99},
+        ]
+    }
