@@ -8,4 +8,4 @@ def read_root():
 
 @app.get("/items")
 def get_items():
-    return {"items": ["item1", "item2", "item3"]} #Добавление вывода предметов
+    return {"items": ["item1", "item2", "item3", "item4", "item5", "item6"]} #Добавление вывода предметов
