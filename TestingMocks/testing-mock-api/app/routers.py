@@ -1,7 +1,15 @@
-<<<<<<< HEAD
 from fastapi import APIRouter, Query
 from pydantic import BaseModel
 import csv
+
+
+
+class User(BaseModel):
+    username: str
+    password: str
+    # city: Optional[str] = None
+    # age: Optional[int] = None
+    # hobby: Optional[str] = None
 
 #Временное решение, пока не натсроили нормальный импорт из utils
 def parse_csv(csv_string: str) -> list[dict[str, str]]:
@@ -17,6 +25,10 @@ def parse_csv(csv_string: str) -> list[dict[str, str]]:
     return data
 
 full_data: list[dict[str, str]] = []
+
+
+users = []  
+new_user = {}
 
 router = APIRouter()
 
@@ -34,23 +46,8 @@ def upload_user_data(username: str, data: str = Query(...)):
         })
     
     return {"message": full_data}
-=======
-
-from fastapi import APIRouter
-from pydantic import BaseModel
-from typing import Optional
-
-class User(BaseModel):
-    username: str
-    password: str
-    # city: Optional[str] = None
-    # age: Optional[int] = None
-    # hobby: Optional[str] = None
 
 
-router = APIRouter()
-users = []  
-new_user = {}
 @router.post("/registration")
 def registration(user: User):
     for existing_user in users:
@@ -71,4 +68,3 @@ def registration(user: User):
         "username": new_user["username"],
         "message": "registration successful"
     }
->>>>>>> origin/feature/create-registration
