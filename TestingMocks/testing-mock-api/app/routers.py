@@ -1,7 +1,11 @@
+import sys
+import os
+
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'testing_mock')))
+
 from fastapi import APIRouter, Query
 from pydantic import BaseModel
-import csv
-
+from testing_mock.utils import parse_csv
 
 
 class User(BaseModel):
@@ -11,23 +15,8 @@ class User(BaseModel):
     # age: Optional[int] = None
     # hobby: Optional[str] = None
 
-#Временное решение, пока не натсроили нормальный импорт из utils
-def parse_csv(csv_string: str) -> list[dict[str, str]]:
-    data = []
-    lines = csv_string.strip().split("\n")
-    if not lines:
-        return data
 
-    reader = csv.DictReader(lines)
-    for row in reader:
-        data.append(row)
-        
-    return data
-
-full_data: list[dict[str, str]] = []
-
-
-users = []  
+users = [{"Username": "Tom", "Password": "123", "City": "Irkutsk", "Age": "25", "Hobby": "Chess"}]  
 new_user = {}
 
 router = APIRouter()
@@ -37,15 +26,15 @@ def upload_user_data(username: str, data: str = Query(...)):
     user_data_list = parse_csv(data)
     
     for user_data in user_data_list:
-        full_data.append({
-            "Username": username,
-            "Password": user_data.get("Password"),
-            "City": user_data.get("City"),
-            "Age": user_data.get("Age"),
-            "Hobby": user_data.get("Hobby")
-        })
+        for user in users:
+            if user.get("Username") == username:
+                user["City"] = user_data.get("City")
+                user["Age"] = user_data.get("Age")
+                user["Hobby"] = user_data.get("Hobby")
+
+                return {"message": users}
     
-    return {"message": full_data}
+    return {"message": "Nothing changed"}
 
 
 @router.post("/registration")
