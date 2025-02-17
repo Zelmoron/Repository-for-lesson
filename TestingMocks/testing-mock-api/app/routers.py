@@ -64,8 +64,14 @@ def registration(user: User):
     }
 
     users.append(new_user)
+    print(users)
 
     return {
         "Username": new_user["Username"],
         "message": "registration successful"
     }
+
+@router.get("/get-users")
+def get_users():
+    return users
+
