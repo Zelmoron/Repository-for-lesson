@@ -57,7 +57,7 @@ def registration(user: User):
 
     new_user = {
         "Username": user.username,
-        "Password": "f2ui190dwf" + user.password + "34254" + "!" * 4,
+        "Password": user.password,
         "City": "",
         "Age": 0,
         "Hobby":""
