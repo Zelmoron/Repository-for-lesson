@@ -41,20 +41,26 @@ def upload_user_data(username: str, data: str = Query(...)):
 @router.post("/registration")
 def registration(user: User):
     for existing_user in users:
-        if existing_user["username"] == user.username:
+        if existing_user["Username"] == user.username:
             return {"message": "this user already exists"}
 
     new_user = {
-        "username": user.username,
-        "password": "f2ui190dwf" + user.password + "34254" + "!" * 4,
-        "city": "",
-        "age": 0,
-        "hobby":""
+        "Username": user.username,
+        "Password": "f2ui190dwf" + user.password + "34254" + "!" * 4,
+        "City": "",
+        "Age": 0,
+        "Hobby":""
     }
 
     users.append(new_user)
+    print(users)
 
     return {
-        "username": new_user["username"],
+        "username": new_user["Username"],
         "message": "registration successful"
     }
+
+@router.get("/get-users")
+def get_users():
+    return users
+
