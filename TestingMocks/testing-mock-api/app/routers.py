@@ -16,7 +16,8 @@ class User(BaseModel):
     # hobby: Optional[str] = None
 
 
-users = [{"Username": "Tom", "Password": "123", "City": "Irkutsk", "Age": "25", "Hobby": "Chess"}]  
+users = [{"Username": "Tom", "Password": "123", "City": "Irkutsk", "Age": "25", "Hobby": "Chess"},
+         {"Username": "Alex", "Password": "321", "City": "", "Age": "", "Hobby": ""}]  
 new_user = {}
 
 router = APIRouter()
@@ -27,12 +28,12 @@ def upload_user_data(username: str, data: str = Query(...)):
     
     for user_data in user_data_list:
         for user in users:
-            if user.get("Username") == username:
+            if user.get("Username") == username and user_data.get("Password") == user["Password"]:
                 user["City"] = user_data.get("City")
                 user["Age"] = user_data.get("Age")
                 user["Hobby"] = user_data.get("Hobby")
 
-                return {"message": users}
+                return {"message": user}
     
     return {"message": "Nothing changed"}
 
