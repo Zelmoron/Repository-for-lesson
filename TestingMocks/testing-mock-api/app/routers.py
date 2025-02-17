@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Query
 from pydantic import BaseModel
+import csv
 
 #Временное решение, пока не натсроили нормальный импорт из utils
 def parse_csv(csv_string: str) -> list[dict[str, str]]:
