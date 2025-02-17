@@ -64,7 +64,6 @@ def registration(user: User):
     }
 
     users.append(new_user)
-    print(users)
 
     return {
         "Username": new_user["Username"],
