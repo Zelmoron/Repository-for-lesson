@@ -38,6 +38,17 @@ def upload_user_data(username: str, data: str = Query(...)):
     return {"message": "Nothing changed"}
 
 
+@router.get("/get_information/{username}")
+def get_information(username: str):    
+    for user in users:
+        if user.get("Username") == username:
+            data = {"City": user.get("City"), "Age": user.get("Age"), "Hobby": user.get("Hobby")}
+
+            return {"message": data}
+    
+    return {"message": "Nothing information for this username."}
+
+
 @router.post("/registration")
 def registration(user: User):
     for existing_user in users:
@@ -56,7 +67,7 @@ def registration(user: User):
     print(users)
 
     return {
-        "username": new_user["Username"],
+        "Username": new_user["Username"],
         "message": "registration successful"
     }
 
