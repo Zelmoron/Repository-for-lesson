@@ -7,7 +7,7 @@
 3. [**Получение списка пользователей**](https://github.com/Zelmoron/Repository-for-lesson/issues/19): Возвращает список всех зарегистрированных пользователей.
 4. [**Получение данных конкретного пользователя**](https://github.com/Zelmoron/Repository-for-lesson/issues/20): Позволяет получить данные, загруженные конкретным пользователем.
 5. [**Создание CLI**](https://github.com/Zelmoron/Repository-for-lesson/issues/23): CLI клиент, который может взаимодействовать с сервером с помощью запросов,.
-6. **Напсиание тестов**:
+6. **Написание тестов**:
     * [Тест для парсера csv](https://github.com/Zelmoron/Repository-for-lesson/issues/26)
     * [Тест для сервера](https://github.com/Zelmoron/Repository-for-lesson/issues/29)
     * [Тесты эндпоинтов через unittest](https://github.com/Zelmoron/Repository-for-lesson/issues/33)
