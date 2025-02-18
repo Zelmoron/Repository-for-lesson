@@ -16,8 +16,7 @@ class User(BaseModel):
     # hobby: Optional[str] = None
 
 
-users = [{"Username": "Tom", "Password": "123", "City": "Irkutsk", "Age": "25", "Hobby": "Chess"},
-         {"Username": "Alex", "Password": "321", "City": "", "Age": "", "Hobby": ""}]  
+users = []
 new_user = {}
 
 router = APIRouter()
