@@ -54,8 +54,13 @@ class CLI:
 
 
     def update(self,name:str,password:str,city:str,age:str,hobby:str):
-        url = f"http://localhost:8080/upload/{name}?data=Password,City,Age,Hobby%0A{password},{city},{age},{hobby}"
-        response = requests.get(url)
+        url = f"http://localhost:8080/upload/{name}"
+        data = {
+            "data":f"Password,City,Age,Hobby\n{password},{city},{age},{hobby}"
+        }
+    
+        response = requests.post(url, json=data)
+
         if response.status_code == 200:
             print("Response:", response.json())
         else:
