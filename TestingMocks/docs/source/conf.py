@@ -18,8 +18,13 @@ author = 'ZA'
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 extensions = [
-    'sphinxcontrib.httpdomain',
+    'sphinx.ext.autodoc',
+    'sphinx.ext.napoleon',
+    'sphinx.ext.viewcode',
+   'sphinxcontrib.httpdomain',
+    
 ]
+
 
 templates_path = ['_templates']
 exclude_patterns = []
