@@ -1,1 +1,7 @@
 sphinx_rtd_theme
+fastapi
+uvicorn
+httpx
+python-multipart
+pytest
+requests
