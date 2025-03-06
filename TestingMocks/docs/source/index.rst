@@ -9,15 +9,3 @@ Welcome to the TestingMocks documentation.
 
    cli
    routers
-
-CLI Module
-==========
-
-.. automodule:: cli
-   :members:
-
-Routers Module
-=============
-
-.. automodule:: routers
-   :members:
