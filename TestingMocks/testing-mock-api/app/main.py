@@ -1,13 +1,12 @@
 from fastapi import FastAPI
 from routers import router
 import threading
-import time
+import uvicorn
 from cli import CLI
-
-# Create a FastAPI application instance
+import time
+import requests
 app = FastAPI()
 
-# Include the router for handling API endpoints
 app.include_router(router)
 
 
@@ -17,8 +16,7 @@ def server_start():
 
     Runs the server on localhost at port 8080.
     """
-    import uvicorn
-    uvicorn.run(app, host="127.0.0.1", port=8080)   
+    uvicorn.run(app, host="127.0.0.1", port=8080)
 
 
 def run_cli():
@@ -37,12 +35,20 @@ if __name__ == "__main__":
 
     Starts the server in a separate thread and then runs the CLI.
     """
-    # Create a thread for running the server
+
     server_thread = threading.Thread(target=server_start)
-    # Set the thread as daemon so it exits when the main thread exits
-    server_thread.daemon = True 
+
+    server_thread.daemon = True
     server_thread.start()
+
+
+    server_ready = False
+    while not server_ready:
+        try:
+            response = requests.get("http://127.0.0.1:8080")
+            if response.status_code == 200:
+                server_ready = True
+        except requests.exceptions.ConnectionError:
+            time.sleep(1)
     
-    # Wait for a second to ensure the server is running before starting the CLI
-    time.sleep(1)
     run_cli()
