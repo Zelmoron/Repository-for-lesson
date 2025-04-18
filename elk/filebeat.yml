@@ -1,0 +1,8 @@
+filebeat.inputs:
+- type: log
+  enabled: true
+  paths:
+    - /var/log/myapp/app.log   # путь к логам внутри контейнера Filebeat
+
+output.logstash:
+  hosts: ["logstash:5044"]     # адрес Logstash в docker-сети
